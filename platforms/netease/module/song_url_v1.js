@@ -12,7 +12,7 @@ module.exports = async (query, request) => {
   return request(`/api/song/enhance/player/url/v1`, data, {
     crypto: 'eapi',
     useCheckToken: false,
-    MUSIC_U: query.MUSIC_U || ''
+    MUSIC_U: process.env.DEFAULT_MUSIC_U || query.MUSIC_U || ''
   }).then(res => {
     // 将音频URL的HTTP协议转换为HTTPS（避免混合内容警告）
     if (res.body && res.body.data && Array.isArray(res.body.data)) {
