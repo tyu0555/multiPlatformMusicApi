@@ -27,6 +27,14 @@ services:
       - HOST=0.0.0.0
       - LOG_LEVEL=${LOG_LEVEL:-info}
       - CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN:-*}
+            # 可选：网易云音乐认证（用于访问用户相关功能）
+      # 如需使用，在 .env 文件中设置 DEFAULT_MUSIC_U=你的cookie
+      - DEFAULT_MUSIC_U=${DEFAULT_MUSIC_U:-}
+
+      # 可选：QQ音乐认证（用于访问用户相关功能）
+      # 如需使用，在 .env 文件中设置对应的值
+      - DEFAULT_UIN=${DEFAULT_UIN:-}
+      - DEFAULT_QM_KEYST=${DEFAULT_QM_KEYST:-}
 
     # 重启策略
     restart: unless-stopped
