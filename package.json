@@ -1,0 +1,42 @@
+{
+  "name": "multi-platform-music-api",
+  "version": "1.0.0",
+  "description": "多平台音乐API服务器，提供网易云音乐、QQ音乐等平台的统一API接口",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "LOG_LEVEL=debug node app.js",
+    "debug": "LOG_LEVEL=debug node app.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "clean": "rm -rf coverage"
+  },
+  "keywords": [
+    "music",
+    "api",
+    "netease",
+    "qq-music",
+    "multi-platform",
+    "music-api",
+    "rest-api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "got": "^11.8.6",
+    "tough-cookie": "^6.0.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4"
+  }
+}

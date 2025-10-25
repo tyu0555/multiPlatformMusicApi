@@ -1,0 +1,11 @@
+node_modules/
+docs/
+
+# 测试覆盖率报告
+coverage/
+*.lcov
+
+# 环境变量
+.env
+.env.local
+.env.*.local

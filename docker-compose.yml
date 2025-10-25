@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  music-api:
+    # 使用预构建镜像（推荐，快速启动）
+    image: ghcr.io/tlyanyu/multiplatformmusicapi:latest
+
+    # 本地构建方式（本地开发或镜像未发布时使用）
+    # 取消下面三行注释并注释掉上面的 image 行即可使用本地构建
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+
+    container_name: music-api
+
+    # 端口映射
+    # 格式：宿主机端口:容器端口
+    # 默认使用 3000 端口，可通过 HOST_PORT 环境变量自定义
+    # 示例：HOST_PORT=8080 docker compose up
+    ports:
+      - "${HOST_PORT:-3000}:3000"
+
+    # 环境变量
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN:-*}
+
+    # 重启策略
+    restart: unless-stopped
+
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:3000/status', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+    # 日志配置
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # 网络
+    networks:
+      - music-api-network
+
+networks:
+  music-api-network:
+    driver: bridge
