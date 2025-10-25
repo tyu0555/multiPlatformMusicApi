@@ -9,8 +9,8 @@ module.exports = async (query, request) => {
     throw new Error('Missing required parameter: id')
   }
 
-  let uin = query.uin || '0' // QQ音乐用户uin
-  let qm_keyst = query.qm_keyst || '' // QQ音乐VIP认证信息
+  let uin = process.env.DEFAULT_UIN || query.uin || '0' // QQ音乐用户uin
+  let qm_keyst = process.env.DEFAULT_QM_KEYST || query.qm_keyst || '' // QQ音乐VIP认证信息
 
   const requestData = {
     comm: {
