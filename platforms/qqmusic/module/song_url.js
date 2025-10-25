@@ -12,8 +12,8 @@ module.exports = async (query, request) => {
   if (!songMid) {
     throw new Error('Missing song mid or id')
   }
-  const uin = query.uin || '0' // QQ音乐用户uin
-  const qm_keyst = query.qm_keyst || '' // QQ音乐VIP认证信息
+  const uin = process.env.DEFAULT_UIN || query.uin || '0' // QQ音乐用户uin
+  const qm_keyst = process.env.DEFAULT_QM_KEYST || query.qm_keyst || '' // QQ音乐VIP认证信息
   const quality = query.level || 'exhigh'
 
   const qualityMap = getQualityMap()
