@@ -11,7 +11,7 @@ module.exports = (query, request) => {
   return request(`/api/song/enhance/download/url/v1`, data, {
     crypto: "eapi",
     useCheckToken: false,
-    MUSIC_U: query.MUSIC_U || ''
+    MUSIC_U: process.env.DEFAULT_MUSIC_U || query.MUSIC_U || ''
   }).then(res => {
     return res.body
   })
